@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Knowledge Base</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .google-workspace { background: linear-gradient(45deg, #4285F4, #34A853); }
+        .microsoft-365 { background: linear-gradient(45deg, #FF6900, #FCB900); }
+        .security { background: linear-gradient(45deg, #FF073A, #FF5722); }
+        .networking { background: linear-gradient(45deg, #00BCD4, #2196F3); }
+        .troubleshooting { background: linear-gradient(45deg, #9C27B0, #673AB7); }
+        .general { background: linear-gradient(45deg, #607D8B, #455A64); }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .category-count {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .articles-list {
+            margin-top: 15px;
+        }
+
+        .article-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .article-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            margin: 0 -10px;
+            padding: 12px 10px;
+            border-radius: 8px;
+        }
+
+        .article-item:last-child {
+            border-bottom: none;
+        }
+
+        .article-title {
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+
+        .article-title:hover {
+            color: #667eea;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: #95a5a6;
+        }
+
+        .add-article-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .add-article-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .close {
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            height: 200px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .add-article-btn {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>IT Knowledge Base</h1>
+            <p class="subtitle">Your comprehensive resource for Google Workspace, Microsoft 365, and IT solutions</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Search articles..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+        </header>
+
+        <div class="categories" id="categoriesContainer">
+            <div class="category-card" data-category="google-workspace">
+                <div class="category-header">
+                    <div class="category-icon google-workspace">📧</div>
+                    <div>
+                        <div class="category-title">Google Workspace</div>
+                        <div class="category-count">0 articles</div>
+                    </div>
+                </div>
+                <div class="articles-list" id="google-workspace-articles"></div>
+            </div>
+
+            <div class="category-card" data-category="microsoft-365">
+                <div class="category-header">
+                    <div class="category-icon microsoft-365">🏢</div>
+                    <div>
+                        <div class="category-title">Microsoft 365</div>
+                        <div class="category-count">0 articles</div>
+                    </div>
+                </div>
+                <div class="articles-list" id="microsoft-365-articles"></div>
+            </div>
+
+            <div class="category-card" data-category="security">
+                <div class="category-header">
+                    <div class="category-icon security">🔒</div>
+                    <div>
+                        <div class="category-title">Security & Compliance</div>
+                        <div class="category-count">0 articles</div>
+                    </div>
+                </div>
+                <div class="articles-list" id="security-articles"></div>
+            </div>
+
+            <div class="category-card" data-category="networking">
+                <div class="category-header">
+                    <div class="category-icon networking">🌐</div>
+                    <div>
+                        <div class="category-title">Networking</div>
+                        <div class="category-count">0 articles</div>
+                    </div>
+                </div>
+                <div class="articles-list" id="networking-articles"></div>
+            </div>
+
+            <div class="category-card" data-category="troubleshooting">
+                <div class="category-header">
+                    <div class="category-icon troubleshooting">🔧</div>
+                    <div>
+                        <div class="category-title">Troubleshooting</div>
+                        <div class="category-count">0 articles</div>
+                    </div>
+                </div>
+                <div class="articles-list" id="troubleshooting-articles"></div>
+            </div>
+
+            <div class="category-card" data-category="general">
+                <div class="category-header">
+                    <div class="category-icon general">💡</div>
+                    <div>
+                        <div class="category-title">General IT</div>
+                        <div class="category-count">0 articles</div>
+                    </div>
+                </div>
+                <div class="articles-list" id="general-articles"></div>
+            </div>
+        </div>
+    </div>
+
+    <button class="add-article-btn" id="addArticleBtn">+</button>
+
+    <!-- Add Article Modal -->
+    <div id="articleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add New Article</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <form id="articleForm">
+                <div class="form-group">
+                    <label for="articleTitle">Article Title</label>
+                    <input type="text" id="articleTitle" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="articleCategory">Category</label>
+                    <select id="articleCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="google-workspace">Google Workspace</option>
+                        <option value="microsoft-365">Microsoft 365</option>
+                        <option value="security">Security & Compliance</option>
+                        <option value="networking">Networking</option>
+                        <option value="troubleshooting">Troubleshooting</option>
+                        <option value="general">General IT</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="articleContent">Article Content</label>
+                    <textarea id="articleContent" placeholder="Write your article content here..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="articleTags">Tags (comma-separated)</label>
+                    <input type="text" id="articleTags" placeholder="e.g., gmail, setup, configuration">
+                </div>
+                
+                <button type="submit" class="btn">Add Article</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Article View Modal -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="viewTitle"></h2>
+                <span class="close" id="closeViewModal">&times;</span>
+            </div>
+            <div class="article-meta" id="viewMeta"></div>
+            <div id="viewContent" style="margin-top: 20px; line-height: 1.6;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Data storage
+        let articles = [];
+
+        // DOM elements
+        const addArticleBtn = document.getElementById('addArticleBtn');
+        const articleModal = document.getElementById('articleModal');
+        const viewModal = document.getElementById('viewModal');
+        const closeModal = document.getElementById('closeModal');
+        const closeViewModal = document.getElementById('closeViewModal');
+        const articleForm = document.getElementById('articleForm');
+        const searchInput = document.getElementById('searchInput');
+
+        // Initialize
+        loadArticles();
+        renderArticles();
+
+        // Event listeners
+        addArticleBtn.addEventListener('click', () => {
+            articleModal.style.display = 'block';
+        });
+
+        closeModal.addEventListener('click', () => {
+            articleModal.style.display = 'none';
+            articleForm.reset();
+        });
+
+        closeViewModal.addEventListener('click', () => {
+            viewModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === articleModal) {
+                articleModal.style.display = 'none';
+                articleForm.reset();
+            }
+            if (e.target === viewModal) {
+                viewModal.style.display = 'none';
+            }
+        });
+
+        articleForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            addArticle();
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            searchArticles(e.target.value);
+        });
+
+        // Functions
+        function addArticle() {
+            const title = document.getElementById('articleTitle').value;
+            const category = document.getElementById('articleCategory').value;
+            const content = document.getElementById('articleContent').value;
+            const tags = document.getElementById('articleTags').value.split(',').map(tag => tag.trim()).filter(tag => tag);
+
+            const article = {
+                id: Date.now(),
+                title,
+                category,
+                content,
+                tags,
+                dateCreated: new Date().toLocaleDateString(),
+                lastModified: new Date().toLocaleDateString()
+            };
+
+            articles.push(article);
+            saveArticles();
+            renderArticles();
+            
+            articleModal.style.display = 'none';
+            articleForm.reset();
+        }
+
+        function renderArticles() {
+            const categories = ['google-workspace', 'microsoft-365', 'security', 'networking', 'troubleshooting', 'general'];
+            
+            categories.forEach(category => {
+                const categoryArticles = articles.filter(article => article.category === category);
+                const container = document.getElementById(`${category}-articles`);
+                const countElement = document.querySelector(`[data-category="${category}"] .category-count`);
+                
+                countElement.textContent = `${categoryArticles.length} article${categoryArticles.length !== 1 ? 's' : ''}`;
+                
+                container.innerHTML = '';
+                
+                categoryArticles.forEach(article => {
+                    const articleElement = document.createElement('div');
+                    articleElement.className = 'article-item';
+                    articleElement.innerHTML = `
+                        <div class="article-title" onclick="viewArticle(${article.id})">${article.title}</div>
+                        <div class="article-meta">Created: ${article.dateCreated} | Tags: ${article.tags.join(', ') || 'None'}</div>
+                    `;
+                    container.appendChild(articleElement);
+                });
+            });
+        }
+
+        function viewArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (article) {
+                document.getElementById('viewTitle').textContent = article.title;
+                document.getElementById('viewMeta').innerHTML = `
+                    <strong>Category:</strong> ${article.category.replace('-', ' ').toUpperCase()} | 
+                    <strong>Created:</strong> ${article.dateCreated} | 
+                    <strong>Tags:</strong> ${article.tags.join(', ') || 'None'}
+                `;
+                document.getElementById('viewContent').innerHTML = article.content.replace(/\n/g, '<br>');
+                viewModal.style.display = 'block';
+            }
+        }
+
+        function searchArticles(query) {
+            if (!query) {
+                renderArticles();
+                return;
+            }
+
+            const filteredArticles = articles.filter(article => 
+                article.title.toLowerCase().includes(query.toLowerCase()) ||
+                article.content.toLowerCase().includes(query.toLowerCase()) ||
+                article.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
+            );
+
+            // Render filtered results
+            const categories = ['google-workspace', 'microsoft-365', 'security', 'networking', 'troubleshooting', 'general'];
+            
+            categories.forEach(category => {
+                const categoryArticles = filteredArticles.filter(article => article.category === category);
+                const container = document.getElementById(`${category}-articles`);
+                const countElement = document.querySelector(`[data-category="${category}"] .category-count`);
+                
+                countElement.textContent = `${categoryArticles.length} article${categoryArticles.length !== 1 ? 's' : ''}`;
+                
+                container.innerHTML = '';
+                
+                categoryArticles.forEach(article => {
+                    const articleElement = document.createElement('div');
+                    articleElement.className = 'article-item';
+                    articleElement.innerHTML = `
+                        <div class="article-title" onclick="viewArticle(${article.id})">${article.title}</div>
+                        <div class="article-meta">Created: ${article.dateCreated} | Tags: ${article.tags.join(', ') || 'None'}</div>
+                    `;
+                    container.appendChild(articleElement);
+                });
+            });
+        }
+
+        function saveArticles() {
+            // Note: In a real implementation, you'd save to a database
+            // For now, we'll just keep them in memory during the session
+        }
+
+        function loadArticles() {
+            // Note: In a real implementation, you'd load from a database
+            // For demo purposes, let's add a sample article
+            articles = [
+                {
+                    id: 1,
+                    title: "How to Set Up Gmail Filters",
+                    category: "google-workspace",
+                    content: "Gmail filters help you automatically organize your emails...\n\n1. Open Gmail\n2. Click the settings gear icon\n3. Select 'See all settings'\n4. Go to 'Filters and Blocked Addresses'\n5. Click 'Create a new filter'",
+                    tags: ["gmail", "filters", "organization"],
+                    dateCreated: "2025-06-01",
+                    lastModified: "2025-06-01"
+                }
+            ];
+        }
+    </script>
+</body>
+</html>
