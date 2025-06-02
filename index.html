@@ -12,145 +12,133 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #1a1a1a;
+            background: #ffffff;
             min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
+        /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 40px 0;
+            margin-bottom: 60px;
         }
 
         h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            color: #000000;
+            font-size: 3rem;
+            margin-bottom: 12px;
             font-weight: 700;
+            letter-spacing: -1px;
         }
 
         .subtitle {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            color: #666666;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 400;
         }
 
         .search-container {
             position: relative;
-            margin: 20px 0;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .search-box {
             width: 100%;
-            max-width: 500px;
-            padding: 15px 50px 15px 20px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
+            padding: 16px 24px;
+            border: 2px solid #000000;
+            border-radius: 0;
             font-size: 16px;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            background: #ffffff;
         }
 
         .search-box:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #000000;
+            box-shadow: 0 0 0 1px #000000;
         }
 
-        .search-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
+        .search-box::placeholder {
+            color: #999999;
         }
 
+        /* Categories Grid */
         .categories {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
         }
 
         .category-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            padding: 40px 30px;
+            transition: all 0.2s ease;
             cursor: pointer;
         }
 
         .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #000000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .category-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
         }
-
-        .category-icon {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            color: white;
-        }
-
-        .google-workspace { background: linear-gradient(45deg, #4285F4, #34A853); }
-        .microsoft-365 { background: linear-gradient(45deg, #FF6900, #FCB900); }
-        .security { background: linear-gradient(45deg, #FF073A, #FF5722); }
-        .networking { background: linear-gradient(45deg, #00BCD4, #2196F3); }
-        .troubleshooting { background: linear-gradient(45deg, #9C27B0, #673AB7); }
-        .general { background: linear-gradient(45deg, #607D8B, #455A64); }
 
         .category-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 5px;
+            color: #000000;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
         .category-count {
-            color: #7f8c8d;
-            font-size: 0.9rem;
+            color: #666666;
+            font-size: 0.95rem;
+            font-weight: 400;
         }
 
+        .category-icon {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #000000;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        /* Articles List */
         .articles-list {
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .article-item {
-            padding: 12px 0;
-            border-bottom: 1px solid #ecf0f1;
-            transition: all 0.3s ease;
+            padding: 16px 0;
+            border-bottom: 1px solid #f5f5f5;
+            transition: all 0.2s ease;
         }
 
         .article-item:hover {
-            background: rgba(102, 126, 234, 0.05);
-            margin: 0 -10px;
-            padding: 12px 10px;
-            border-radius: 8px;
+            background: #fafafa;
+            margin: 0 -20px;
+            padding: 16px 20px;
         }
 
         .article-item:last-child {
@@ -159,41 +147,47 @@
 
         .article-title {
             font-weight: 500;
-            color: #2c3e50;
-            margin-bottom: 4px;
+            color: #000000;
+            margin-bottom: 6px;
             cursor: pointer;
+            font-size: 1rem;
+            line-height: 1.4;
         }
 
         .article-title:hover {
-            color: #667eea;
+            text-decoration: underline;
         }
 
         .article-meta {
-            font-size: 0.8rem;
-            color: #95a5a6;
+            font-size: 0.85rem;
+            color: #999999;
+            font-weight: 400;
         }
 
+        /* Add Article Button */
         .add-article-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            bottom: 40px;
+            right: 40px;
+            background: #000000;
             color: white;
             border: none;
-            border-radius: 50%;
             width: 60px;
             height: 60px;
             font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .add-article-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            background: #333333;
+            transform: scale(1.05);
         }
 
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -202,108 +196,137 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .modal-content {
             background: white;
             margin: 5% auto;
-            padding: 30px;
-            border-radius: 15px;
+            padding: 50px;
             width: 90%;
-            max-width: 600px;
+            max-width: 700px;
             max-height: 80vh;
             overflow-y: auto;
+            border: 1px solid #e5e5e5;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e5e5;
         }
 
         .modal-title {
-            font-size: 1.5rem;
-            color: #2c3e50;
+            font-size: 1.8rem;
+            color: #000000;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
 
         .close {
-            font-size: 28px;
+            font-size: 30px;
             cursor: pointer;
-            color: #aaa;
+            color: #666666;
+            font-weight: 300;
+            line-height: 1;
         }
 
         .close:hover {
-            color: #000;
+            color: #000000;
         }
 
+        /* Form Styles */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #2c3e50;
+            color: #000000;
+            font-size: 0.95rem;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            padding: 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 0;
             font-size: 16px;
             outline: none;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.2s ease;
+            font-family: inherit;
         }
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
-            border-color: #667eea;
+            border-color: #000000;
         }
 
         .form-group textarea {
             height: 200px;
             resize: vertical;
+            font-family: inherit;
         }
 
         .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: #000000;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 16px 32px;
             cursor: pointer;
             font-size: 16px;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: #333333;
         }
 
-        .hidden {
-            display: none;
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            color: #999999;
+            font-style: italic;
+            padding: 20px 0;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
+                padding: 0 15px;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
             }
             
             .categories {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .category-card {
+                padding: 30px 20px;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+                margin: 10% auto;
             }
             
             .add-article-btn {
@@ -311,85 +334,126 @@
                 right: 20px;
             }
         }
+
+        /* Article View Modal Specific */
+        .article-content {
+            margin-top: 30px;
+            line-height: 1.7;
+            color: #1a1a1a;
+        }
+
+        .article-content h1, .article-content h2, .article-content h3 {
+            color: #000000;
+            margin: 30px 0 15px 0;
+        }
+
+        .article-content p {
+            margin-bottom: 15px;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 15px 0 15px 20px;
+        }
+
+        .article-content code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+        }
+
+        .view-meta {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #000000;
+            font-size: 0.9rem;
+            color: #666666;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>IT Knowledge Base</h1>
-            <p class="subtitle">Your comprehensive resource for Google Workspace, Microsoft 365, and IT solutions</p>
+            <p class="subtitle">Comprehensive documentation for Google Workspace, Microsoft 365, and enterprise IT solutions</p>
             
             <div class="search-container">
-                <input type="text" class="search-box" placeholder="Search articles..." id="searchInput">
-                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" placeholder="Search articles and documentation..." id="searchInput">
             </div>
         </header>
 
         <div class="categories" id="categoriesContainer">
             <div class="category-card" data-category="google-workspace">
                 <div class="category-header">
-                    <div class="category-icon google-workspace">📧</div>
-                    <div>
-                        <div class="category-title">Google Workspace</div>
-                        <div class="category-count">0 articles</div>
+                    <div class="category-title">
+                        <span class="category-icon"></span>Google Workspace
                     </div>
+                    <div class="category-count">0 articles</div>
                 </div>
-                <div class="articles-list" id="google-workspace-articles"></div>
+                <div class="articles-list" id="google-workspace-articles">
+                    <div class="empty-state">No articles yet</div>
+                </div>
             </div>
 
             <div class="category-card" data-category="microsoft-365">
                 <div class="category-header">
-                    <div class="category-icon microsoft-365">🏢</div>
-                    <div>
-                        <div class="category-title">Microsoft 365</div>
-                        <div class="category-count">0 articles</div>
+                    <div class="category-title">
+                        <span class="category-icon"></span>Microsoft 365
                     </div>
+                    <div class="category-count">0 articles</div>
                 </div>
-                <div class="articles-list" id="microsoft-365-articles"></div>
+                <div class="articles-list" id="microsoft-365-articles">
+                    <div class="empty-state">No articles yet</div>
+                </div>
             </div>
 
             <div class="category-card" data-category="security">
                 <div class="category-header">
-                    <div class="category-icon security">🔒</div>
-                    <div>
-                        <div class="category-title">Security & Compliance</div>
-                        <div class="category-count">0 articles</div>
+                    <div class="category-title">
+                        <span class="category-icon"></span>Security & Compliance
                     </div>
+                    <div class="category-count">0 articles</div>
                 </div>
-                <div class="articles-list" id="security-articles"></div>
+                <div class="articles-list" id="security-articles">
+                    <div class="empty-state">No articles yet</div>
+                </div>
             </div>
 
             <div class="category-card" data-category="networking">
                 <div class="category-header">
-                    <div class="category-icon networking">🌐</div>
-                    <div>
-                        <div class="category-title">Networking</div>
-                        <div class="category-count">0 articles</div>
+                    <div class="category-title">
+                        <span class="category-icon"></span>Networking
                     </div>
+                    <div class="category-count">0 articles</div>
                 </div>
-                <div class="articles-list" id="networking-articles"></div>
+                <div class="articles-list" id="networking-articles">
+                    <div class="empty-state">No articles yet</div>
+                </div>
             </div>
 
             <div class="category-card" data-category="troubleshooting">
                 <div class="category-header">
-                    <div class="category-icon troubleshooting">🔧</div>
-                    <div>
-                        <div class="category-title">Troubleshooting</div>
-                        <div class="category-count">0 articles</div>
+                    <div class="category-title">
+                        <span class="category-icon"></span>Troubleshooting
                     </div>
+                    <div class="category-count">0 articles</div>
                 </div>
-                <div class="articles-list" id="troubleshooting-articles"></div>
+                <div class="articles-list" id="troubleshooting-articles">
+                    <div class="empty-state">No articles yet</div>
+                </div>
             </div>
 
             <div class="category-card" data-category="general">
                 <div class="category-header">
-                    <div class="category-icon general">💡</div>
-                    <div>
-                        <div class="category-title">General IT</div>
-                        <div class="category-count">0 articles</div>
+                    <div class="category-title">
+                        <span class="category-icon"></span>General IT
                     </div>
+                    <div class="category-count">0 articles</div>
                 </div>
-                <div class="articles-list" id="general-articles"></div>
+                <div class="articles-list" id="general-articles">
+                    <div class="empty-state">No articles yet</div>
+                </div>
             </div>
         </div>
     </div>
@@ -406,7 +470,7 @@
             <form id="articleForm">
                 <div class="form-group">
                     <label for="articleTitle">Article Title</label>
-                    <input type="text" id="articleTitle" required>
+                    <input type="text" id="articleTitle" required placeholder="Enter article title">
                 </div>
                 
                 <div class="form-group">
@@ -424,7 +488,7 @@
                 
                 <div class="form-group">
                     <label for="articleContent">Article Content</label>
-                    <textarea id="articleContent" placeholder="Write your article content here..." required></textarea>
+                    <textarea id="articleContent" placeholder="Write your documentation here..." required></textarea>
                 </div>
                 
                 <div class="form-group">
@@ -444,8 +508,8 @@
                 <h2 class="modal-title" id="viewTitle"></h2>
                 <span class="close" id="closeViewModal">&times;</span>
             </div>
-            <div class="article-meta" id="viewMeta"></div>
-            <div id="viewContent" style="margin-top: 20px; line-height: 1.6;"></div>
+            <div class="view-meta" id="viewMeta"></div>
+            <div class="article-content" id="viewContent"></div>
         </div>
     </div>
 
@@ -536,15 +600,19 @@
                 
                 container.innerHTML = '';
                 
-                categoryArticles.forEach(article => {
-                    const articleElement = document.createElement('div');
-                    articleElement.className = 'article-item';
-                    articleElement.innerHTML = `
-                        <div class="article-title" onclick="viewArticle(${article.id})">${article.title}</div>
-                        <div class="article-meta">Created: ${article.dateCreated} | Tags: ${article.tags.join(', ') || 'None'}</div>
-                    `;
-                    container.appendChild(articleElement);
-                });
+                if (categoryArticles.length === 0) {
+                    container.innerHTML = '<div class="empty-state">No articles yet</div>';
+                } else {
+                    categoryArticles.forEach(article => {
+                        const articleElement = document.createElement('div');
+                        articleElement.className = 'article-item';
+                        articleElement.innerHTML = `
+                            <div class="article-title" onclick="viewArticle(${article.id})">${article.title}</div>
+                            <div class="article-meta">Created: ${article.dateCreated}${article.tags.length ? ' • Tags: ' + article.tags.join(', ') : ''}</div>
+                        `;
+                        container.appendChild(articleElement);
+                    });
+                }
             });
         }
 
@@ -553,13 +621,33 @@
             if (article) {
                 document.getElementById('viewTitle').textContent = article.title;
                 document.getElementById('viewMeta').innerHTML = `
-                    <strong>Category:</strong> ${article.category.replace('-', ' ').toUpperCase()} | 
-                    <strong>Created:</strong> ${article.dateCreated} | 
-                    <strong>Tags:</strong> ${article.tags.join(', ') || 'None'}
+                    <strong>Category:</strong> ${getCategoryDisplayName(article.category)} | 
+                    <strong>Created:</strong> ${article.dateCreated}${article.tags.length ? ' | <strong>Tags:</strong> ' + article.tags.join(', ') : ''}
                 `;
-                document.getElementById('viewContent').innerHTML = article.content.replace(/\n/g, '<br>');
+                document.getElementById('viewContent').innerHTML = formatArticleContent(article.content);
                 viewModal.style.display = 'block';
             }
+        }
+
+        function getCategoryDisplayName(category) {
+            const names = {
+                'google-workspace': 'Google Workspace',
+                'microsoft-365': 'Microsoft 365',
+                'security': 'Security & Compliance',
+                'networking': 'Networking',
+                'troubleshooting': 'Troubleshooting',
+                'general': 'General IT'
+            };
+            return names[category] || category;
+        }
+
+        function formatArticleContent(content) {
+            // Simple formatting for better readability
+            return content
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>')
+                .replace(/^/, '<p>')
+                .replace(/$/, '</p>');
         }
 
         function searchArticles(query) {
@@ -586,15 +674,19 @@
                 
                 container.innerHTML = '';
                 
-                categoryArticles.forEach(article => {
-                    const articleElement = document.createElement('div');
-                    articleElement.className = 'article-item';
-                    articleElement.innerHTML = `
-                        <div class="article-title" onclick="viewArticle(${article.id})">${article.title}</div>
-                        <div class="article-meta">Created: ${article.dateCreated} | Tags: ${article.tags.join(', ') || 'None'}</div>
-                    `;
-                    container.appendChild(articleElement);
-                });
+                if (categoryArticles.length === 0) {
+                    container.innerHTML = '<div class="empty-state">No matching articles</div>';
+                } else {
+                    categoryArticles.forEach(article => {
+                        const articleElement = document.createElement('div');
+                        articleElement.className = 'article-item';
+                        articleElement.innerHTML = `
+                            <div class="article-title" onclick="viewArticle(${article.id})">${article.title}</div>
+                            <div class="article-meta">Created: ${article.dateCreated}${article.tags.length ? ' • Tags: ' + article.tags.join(', ') : ''}</div>
+                        `;
+                        container.appendChild(articleElement);
+                    });
+                }
             });
         }
 
@@ -605,18 +697,8 @@
 
         function loadArticles() {
             // Note: In a real implementation, you'd load from a database
-            // For demo purposes, let's add a sample article
-            articles = [
-                {
-                    id: 1,
-                    title: "How to Set Up Gmail Filters",
-                    category: "google-workspace",
-                    content: "Gmail filters help you automatically organize your emails...\n\n1. Open Gmail\n2. Click the settings gear icon\n3. Select 'See all settings'\n4. Go to 'Filters and Blocked Addresses'\n5. Click 'Create a new filter'",
-                    tags: ["gmail", "filters", "organization"],
-                    dateCreated: "2025-06-01",
-                    lastModified: "2025-06-01"
-                }
-            ];
+            // Starting with empty articles array for clean slate
+            articles = [];
         }
     </script>
 </body>
